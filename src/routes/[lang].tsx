@@ -43,7 +43,7 @@ export default function InternalizationLayout() {
   const dict = useRouteData<typeof routeData>();
   const value = createI18nContext(dict(), params.lang);
   createEffect(() => {
-    if (dict()[params.lang]) {
+    if (!dict.loading && dict()[params.lang]) {
       value[1].add(params.lang, dict()[params.lang]);
       value[1].locale(params.lang);
     }
